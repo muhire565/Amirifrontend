@@ -19,11 +19,12 @@ export default function MenuPage() {
   const [search, setSearch] = useState('');
 
   // Real-time synchronization
-  useRealtimeChannel('public:menu_items', () => {
+  useRealtimeChannel('menu', (payload) => {
     queryClient.invalidateQueries(['menu-items']);
-  });
-  useRealtimeChannel('public:menu_categories', () => {
     queryClient.invalidateQueries(['categories']);
+    if (payload?.payload?.action === 'created') {
+      toast.success('Menu updated by another user');
+    }
   });
 
   const { data: catResponse, isLoading: catLoading } = useQuery({

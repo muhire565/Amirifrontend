@@ -11,6 +11,8 @@ const BROADCAST_EVENTS = [
   'payment_received',
   'low_stock_alert',
   'table_updated',
+  'menu_updated',
+  'menu_category_updated',
 ];
 
 // Global registry to share channel subscriptions across components
